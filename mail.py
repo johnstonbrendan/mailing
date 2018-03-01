@@ -24,10 +24,10 @@ for i in range (n):
     msg['From']=sender
     msg['To']= recieve_address
     msg['Subject']="Bottles of beer"
-    if n-i == 2:
+    if (n-i)%100 == 2:
         body = "1 Bottle of beer on the wall, 1 bottle of beer.\n"
         body = body + "Take it down and pass it around, no bottles of beer on the wall."
-    elif n-i == 1:
+    elif (n-i)%100 == 1:
         body = str(n-i-1) + " Bottles of beer on the wall, " + str(n-i-1) + " bottles of beer.\n"
         body = body+ "You go to the store to find some more, and you find 99 bottles of beer on the wall."
     else:
@@ -36,7 +36,6 @@ for i in range (n):
         msg.attach(MIMEText(body, 'plain'))
         text = msg.as_string()
         # send the message via the server set up earlier.
-
         s.sendmail(sender,recieve_address, text)
         print (text)
         del msg
